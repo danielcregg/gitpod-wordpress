@@ -1,82 +1,92 @@
-# Gitpod for WordPress
+# Gitpod WordPress
 
-[Gitpod](https://www.gitpod.io) is a ready-to-code dev environment with a single click. It will allows you to develop plugin or theme directly from your browser.
+![WordPress](https://img.shields.io/badge/WordPress-21759B?style=flat-square&logo=wordpress&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/luizbills/gitpod-wordpress)
+> **Note:** This repository is a fork of [luizbills/gitpod-wordpress](https://github.com/luizbills/gitpod-wordpress).
+
+A ready-to-code WordPress development environment powered by [Gitpod](https://www.gitpod.io). Develop WordPress plugins or themes directly from your browser with a single click.
+
+## Overview
+
+Gitpod WordPress provides a pre-configured, cloud-based development environment for WordPress. It includes a full LAMP stack, WP-CLI, Composer, Node.js, and debugging tools so you can start building plugins and themes immediately without any local setup.
 
 ## Features
 
-- LAMP (Apache, MySQL, PHP)
-- [Composer](https://getcomposer.org/)
-- [Adminer](https://www.adminer.org/)
-- [NVM](https://github.com/nvm-sh/nvm)
-- [Node.js](https://nodejs.org/) (LTS)
-- [Xdebug](https://xdebug.org)
-- [WP-CLI](https://wp-cli.org/)
-- Git
-- SVN
-- [MailHog](https://github.com/mailhog/MailHog)
+- **LAMP Stack** -- Apache, MySQL, and PHP (configurable version) pre-installed
+- **WP-CLI** -- Full WordPress command-line interface support
+- **Composer & NPM** -- Dependency management for PHP and JavaScript
+- **Xdebug** -- Built-in PHP debugging with VS Code integration
+- **Adminer** -- Browser-based database management
+- **MailHog** -- Local SMTP testing and email capture
+- **Node.js (LTS)** -- Managed via NVM for frontend tooling
+- **Git & SVN** -- Version control systems included
 
-## Install
+## Prerequisites
 
-Just copy the [`.gitpod.yml`](/.gitpod.yml) and [`.gitpod.dockerfile`](/.gitpod.dockerfile) to your project root directory and push to your remote repository.
+- A [Gitpod](https://www.gitpod.io) account (free tier available)
+- A GitHub repository containing your WordPress plugin or theme
 
-- If your project is a theme, change the `wp-setup-plugin` to `wp-setup-theme` in your `.gitpod.yml`.
-- By default, the webserver will use PHP `v7.3`. If you need a different version, change it on `ENV PHP_VERSION` in your `.gitpod.dockerfile` (line 4).
+## Getting Started
 
-Also, the `wp-setup-plugin` (or `wp-setup-theme`) will search for a `.init.sh` file in your project root directory and execute it (if exists). Then, you can use the `wp-cli` to install plugins, install themes, and [more](https://developer.wordpress.org/cli/commands/). Or create your own tasks. 
+### Installation
+
+1. Copy `.gitpod.yml` and `.gitpod.dockerfile` to your project root directory.
+2. Push the files to your remote repository.
+3. If your project is a **theme**, change `wp-setup-plugin` to `wp-setup-theme` in `.gitpod.yml`.
+4. To change the PHP version, edit `ENV PHP_VERSION` in `.gitpod.dockerfile`.
+
+### Usage
+
+Open your project in Gitpod by navigating to:
+
+```
+https://gitpod.io/#<url-of-your-github-project>
+```
+
+**Default Admin Credentials:**
+
+| Field    | Value      |
+|----------|------------|
+| Username | `admin`    |
+| Password | `password` |
+
+**Available Terminal Commands:**
+
+| Command            | Description                          |
+|--------------------|--------------------------------------|
+| `browse-home`      | Open the WordPress homepage          |
+| `browse-wpadmin`   | Open the WordPress admin panel       |
+| `browse-dbadmin`   | Open Adminer for database management |
+| `browse-phpinfo`   | View PHP configuration info          |
+| `browse-emails`    | Open the MailHog email client        |
+
+**Custom Initialization:**
+
+Add a `.init.sh` file to your project root to run custom setup commands:
 
 ```sh
-# .init.sh
-wp plugin install woocommerce --activate # install WooCommerce
-wp plugin activate ${REPO_NAME} # activate your plugin
+wp plugin install woocommerce --activate
+wp plugin activate ${REPO_NAME}
 ```
 
-Project dependencies (in `composer.json` or `package.json`) are automatically installed.
+Project dependencies defined in `composer.json` or `package.json` are installed automatically.
 
-## Usage
+## Tech Stack
 
-Now you access `https://gitpod.io/#<url-of-your-github-project>`.
+| Technology | Purpose                        |
+|------------|--------------------------------|
+| WordPress  | Content management system      |
+| PHP 7.4    | Server-side scripting          |
+| Apache     | Web server                     |
+| MySQL      | Database                       |
+| Docker     | Containerized dev environment  |
+| Gitpod     | Cloud-based IDE                |
+| WP-CLI     | WordPress command-line tooling |
+| Xdebug     | PHP debugging                  |
 
-> Example: [https://gitpod.io/#https://github.com/luizbills/wp-tweaks/](https://gitpod.io/#https://github.com/luizbills/wp-tweaks/)
+## License
 
-Your admin credentials:
-
-```
-username: admin
-password: password
-```
-
-### Utilities
-
-- You can use the following commands in terminal:
-  - `browse-url <endpoint>`: open an endpoint of your WordPress installation.
-  - `browse-home`: alias for `browse-url /` (your Homepage)
-  - `browse-wpadmin`: alias for `browse-url /wp-admin` (WordPress Admin Painel)
-  - `browse-dbadmin`: alias for `browse-url /database` (to manage your database with Adminer)
-  - `browse-phpinfo`: alias for `browse-url /phpinfo` (a page with `<?php phpinfo(); ?>`)
-  - `browse-emails`: open the MailHog client
-  
-- You can setup your PHP on `.htaccess` file (eg: `php_value max_execution_time 600`)
-
-## Contributing
-
-To contribute, follow these steps:
-
-1. Fork this repository.
-1. Create a branch: `git checkout -b <branch_name>`.
-1. Make your changes and commit them: `git commit -m '<commit_message>'`
-1. Push to your fork: `git push origin <branch_name>`
-1. Create the Pull Request.
-
-Alternatively see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
-
-Just found a bug? Report it on GitHub [Issues](https://github.com/luizbills/gitpod-wordpress/issues).
-
-## LICENSE
-
-MIT &copy; 2019 Luiz Paulo "Bills"
-
----
-
-Made with ❤ in Brazil
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
